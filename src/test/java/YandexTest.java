@@ -19,7 +19,7 @@ public class YandexTest {
     }
 
     @Test
-    public void YandexTest() {
+    public void yandexTest() {
         YandexPageObjectTest test = new YandexPageObjectTest(driver);
         // Заходим на Яндекс => Яндекс.Маркет => Вводим "Ноутбуки" => Проверяем => Нажимаем "Найти"
         test
