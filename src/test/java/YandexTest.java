@@ -61,5 +61,4 @@ public class YandexTest {
         System.out.println("Тест окончен");
         driver.quit();
     }
-
 }
