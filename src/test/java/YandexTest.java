@@ -37,16 +37,16 @@ public class YandexTest {
 
         //Ставим галочки напротив нужных фирм
             .tabIntelCore()
-            .tabCompanyApple()
-            .tabCompanyASUS()
-            .tabCompanyHP()
-            .tabCompanyXiaomi()
+            .tabApple()
+            .tabASUS()
+            .tabHP()
+            .tabXiaomi()
 
         // Проверяем, что нужные фирмы отмечены
-            .checkEnabledCompanyApple()
-            .checkEnabledCompanyASUS()
-            .checkEnabledCompanyHP()
-            .checkEnabledCompanyXiaomi()
+            .checkApple()
+            .checkASUS()
+            .checkHP()
+            .checkXiaomi()
 
         // Очищаем поле поиска => Вводим "Зелёный слоник" => Нажимаем "Найти" => Ищем "Толстовка"
             .claerSearch()

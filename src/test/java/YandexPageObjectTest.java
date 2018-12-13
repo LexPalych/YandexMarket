@@ -98,42 +98,42 @@ public class YandexPageObjectTest {
         return this;
     }
 
-    public YandexPageObjectTest tabCompanyApple() {
+    public YandexPageObjectTest tabApple() {
         companyApple.click();
         return this;
     }
 
-    public YandexPageObjectTest tabCompanyASUS() {
+    public YandexPageObjectTest tabASUS() {
         companyASUS.click();
         return this;
     }
 
-    public YandexPageObjectTest tabCompanyHP() {
+    public YandexPageObjectTest tabHP() {
         companyHP.click();
         return this;
     }
 
-    public YandexPageObjectTest tabCompanyXiaomi() {
+    public YandexPageObjectTest tabXiaomi() {
         companyXiaomi.click();
         return this;
     }
 
-    public YandexPageObjectTest checkEnabledCompanyApple() {
+    public YandexPageObjectTest checkApple() {
         assertTrue(companyApple.isEnabled());
         return this;
     }
 
-    public YandexPageObjectTest checkEnabledCompanyASUS() {
+    public YandexPageObjectTest checkASUS() {
         assertTrue(companyASUS.isEnabled());
         return this;
     }
 
-    public YandexPageObjectTest checkEnabledCompanyHP() {
+    public YandexPageObjectTest checkHP() {
         assertTrue(companyHP.isEnabled());
         return this;
     }
 
-    public YandexPageObjectTest checkEnabledCompanyXiaomi() {
+    public YandexPageObjectTest checkXiaomi() {
         assertTrue(companyXiaomi.isEnabled());
         return this;
     }
