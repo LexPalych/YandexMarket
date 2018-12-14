@@ -53,8 +53,8 @@ public class YandexPageObjectTest {
         return this;
     }
 
-    public YandexPageObjectTest tabMarket() {
-        market.click();
+    public YandexPageObjectTest tabClick(String s) {
+        driver.findElement(By.xpath("//*[.='" + s + "']")).click();
         return this;
     }
 
@@ -65,11 +65,6 @@ public class YandexPageObjectTest {
 
     public YandexPageObjectTest checkFieldLaptop() {
         assertEquals(search.getAttribute("value"), "Ноутбуки");
-        return this;
-    }
-
-    public YandexPageObjectTest tabSearch() {
-        searchButton.click();
         return this;
     }
 

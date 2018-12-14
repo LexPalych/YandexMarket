@@ -24,10 +24,10 @@ public class YandexTest {
         // Заходим на Яндекс => Яндекс.Маркет => Вводим "Ноутбуки" => Проверяем => Нажимаем "Найти"
         test
             .openSite(url, driver)
-            .tabMarket()
+            .tabClick("Маркет")
             .fillField("Ноутбуки")
             .checkFieldLaptop()
-            .tabSearch()
+            .tabClick("Найти")
 
         // Вводим минимум и максимум цены и проверяем их
             .fillPrice("Цена от", "100000")
@@ -51,7 +51,7 @@ public class YandexTest {
         // Очищаем поле поиска => Вводим "Зелёный слоник" => Нажимаем "Найти" => Ищем "Толстовка"
             .claerSearch()
             .fillField("Зеленый слоник")
-            .tabSearch()
+            .tabClick("Найти")
             .tabSweatshirt()
             .openSite(url, driver);
     }
