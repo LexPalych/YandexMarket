@@ -36,17 +36,17 @@ public class YandexTest {
             .checkMaxPrice()
 
         //Ставим галочки напротив нужных фирм
-            .tabIntelCore()
-            .tabApple()
-            .tabASUS()
-            .tabHP()
-            .tabXiaomi()
+            .clickButton("Core i7")
+            .clickButton("Apple")
+            .clickButton("ASUS")
+            .clickButton("HP")
+            .clickButton("Xiaomi")
 
         // Проверяем, что нужные фирмы отмечены
-            .checkApple()
-            .checkASUS()
-            .checkHP()
-            .checkXiaomi()
+            .checkTick("Apple")
+            .checkTick("ASUS")
+            .checkTick("HP")
+            .checkTick("Xiaomi")
 
         // Очищаем поле поиска => Вводим "Зелёный слоник" => Нажимаем "Найти" => Ищем "Толстовка"
             .claerSearch()

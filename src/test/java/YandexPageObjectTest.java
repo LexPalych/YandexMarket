@@ -1,3 +1,4 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -63,6 +64,25 @@ public class YandexPageObjectTest {
         return this;
     }
 
+//    public YandexPageObjectTest fillField(String s) {
+//        switch (s) {
+//            case "Ноутбуки" : search.sendKeys("Ноутбуки");
+//            case "100000" : minPrice.sendKeys("100000");
+//            case "200000" : maxPrice.sendKeys("200000");
+//            case "Зеленый слоник" : search.sendKeys("Зеленый слоник");
+//        }
+//        return this;
+//    }
+
+//    public YandexPageObjectTest checkField(String s) {
+//        switch (s) {
+//            case "Ноутбуки" : assertEquals(search.getAttribute("value"), "Ноутбуки");
+//            case "100000" : assertEquals(minPrice.getAttribute("value"), "100000");
+//            case "200000" : assertEquals(maxPrice.getAttribute("value"), "200000");
+//        }
+//        return this;
+//    }
+
     public YandexPageObjectTest checkFieldLaptop() {
         assertEquals(search.getAttribute("value"), "Ноутбуки");
         return this;
@@ -93,50 +113,61 @@ public class YandexPageObjectTest {
         return this;
     }
 
-    public YandexPageObjectTest tabIntelCore() {
-        intelCore.click();
+    public YandexPageObjectTest clickButton(String s) {
+        driver.findElement(By.xpath("//span[.=\""+ s +"\"]")).click();
         return this;
     }
 
-    public YandexPageObjectTest tabApple() {
-        companyApple.click();
+//    public YandexPageObjectTest tabIntelCore() {
+//        intelCore.click();
+//        return this;
+//    }
+//
+//    public YandexPageObjectTest tabApple() {
+//        companyApple.click();
+//        return this;
+//    }
+//
+//    public YandexPageObjectTest tabASUS() {
+//        companyASUS.click();
+//        return this;
+//    }
+//
+//    public YandexPageObjectTest tabHP() {
+//        companyHP.click();
+//        return this;
+//    }
+//
+//    public YandexPageObjectTest tabXiaomi() {
+//        companyXiaomi.click();
+//        return this;
+//    }
+
+    public YandexPageObjectTest checkTick(String s) {
+        //System.out.println("//*[@name=\"Производитель" + s + "\"]");
+        assertTrue(driver.findElement(By.xpath("//*[@name=\"Производитель " + s + "\"]")).isSelected());
         return this;
     }
 
-    public YandexPageObjectTest tabASUS() {
-        companyASUS.click();
-        return this;
-    }
-
-    public YandexPageObjectTest tabHP() {
-        companyHP.click();
-        return this;
-    }
-
-    public YandexPageObjectTest tabXiaomi() {
-        companyXiaomi.click();
-        return this;
-    }
-
-    public YandexPageObjectTest checkApple() {
-        assertTrue(companyApple.isEnabled());
-        return this;
-    }
-
-    public YandexPageObjectTest checkASUS() {
-        assertTrue(companyASUS.isEnabled());
-        return this;
-    }
-
-    public YandexPageObjectTest checkHP() {
-        assertTrue(companyHP.isEnabled());
-        return this;
-    }
-
-    public YandexPageObjectTest checkXiaomi() {
-        assertTrue(companyXiaomi.isEnabled());
-        return this;
-    }
+//    public YandexPageObjectTest checkApple() {
+//        assertTrue(companyApple.isEnabled());
+//        return this;
+//    }
+//
+//    public YandexPageObjectTest checkASUS() {
+//        assertTrue(companyASUS.isEnabled());
+//        return this;
+//    }
+//
+//    public YandexPageObjectTest checkHP() {
+//        assertTrue(companyHP.isEnabled());
+//        return this;
+//    }
+//
+//    public YandexPageObjectTest checkXiaomi() {
+//        assertTrue(companyXiaomi.isEnabled());
+//        return this;
+//    }
 
     public YandexPageObjectTest claerSearch() {
         search.clear();
