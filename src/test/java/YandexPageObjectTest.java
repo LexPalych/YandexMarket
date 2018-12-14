@@ -58,8 +58,8 @@ public class YandexPageObjectTest {
         return this;
     }
 
-    public YandexPageObjectTest fillLaptop() {
-        search.sendKeys("Ноутбуки");
+    public YandexPageObjectTest fillField(String s) {
+        search.sendKeys(s);
         return this;
     }
 
@@ -73,23 +73,13 @@ public class YandexPageObjectTest {
         return this;
     }
 
-    public YandexPageObjectTest fillMinPrice() {
-        minPrice.sendKeys("100000");
+    public YandexPageObjectTest fillPrice(String where, String value) {
+        driver.findElement(By.xpath("//*[@name='"+ where +"']")).sendKeys(value);
         return this;
     }
 
-    public YandexPageObjectTest fillMaxPrice() {
-        maxPrice.sendKeys("200000");
-        return this;
-    }
-
-    public YandexPageObjectTest checkMinPrice() {
-        assertEquals(minPrice.getAttribute("value"), "100000");
-        return this;
-    }
-
-    public YandexPageObjectTest checkMaxPrice() {
-        assertEquals(maxPrice.getAttribute("value"), "200000");
+    public YandexPageObjectTest checkPrice (String where, String value) {
+        assertEquals(driver.findElement(By.xpath("//*[@name='"+ where +"']")).getAttribute("value"), value);
         return this;
     }
 
@@ -105,11 +95,6 @@ public class YandexPageObjectTest {
 
     public YandexPageObjectTest claerSearch() {
         search.clear();
-        return this;
-    }
-
-    public YandexPageObjectTest fillGreenElephant() {
-        search.sendKeys("Зеленый слоник");
         return this;
     }
 

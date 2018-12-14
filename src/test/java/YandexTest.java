@@ -25,15 +25,15 @@ public class YandexTest {
         test
             .openSite(url, driver)
             .tabMarket()
-            .fillLaptop()
+            .fillField("Ноутбуки")
             .checkFieldLaptop()
             .tabSearch()
 
         // Вводим минимум и максимум цены и проверяем их
-            .fillMinPrice()
-            .fillMaxPrice()
-            .checkMinPrice()
-            .checkMaxPrice()
+            .fillPrice("Цена от", "100000")
+            .fillPrice("Цена до", "200000")
+            .checkPrice("Цена от", "100000")
+            .checkPrice("Цена до", "200000")
 
         //Ставим галочки напротив нужных фирм
             .clickButton("Core i7")
@@ -50,7 +50,7 @@ public class YandexTest {
 
         // Очищаем поле поиска => Вводим "Зелёный слоник" => Нажимаем "Найти" => Ищем "Толстовка"
             .claerSearch()
-            .fillGreenElephant()
+            .fillField("Зеленый слоник")
             .tabSearch()
             .tabSweatshirt()
             .openSite(url, driver);
