@@ -84,6 +84,7 @@ public class YandexTest {
         return Stream.of(
                 Arguments.of("100000", "150000"),
                 Arguments.of("150000", "200000"),
-                Arguments.of("200000", "250000"));
+                Arguments.of("200000", "250000")
+        );
     }
 }
