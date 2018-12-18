@@ -41,11 +41,6 @@ public class YandexMarketTest {
     @FindBy(xpath = "//strong[contains(.,'Толстовка')]")
     private WebElement sweatshirt;
 
-    public YandexMarketTest() {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
-    }
-
     public YandexMarketTest(ChromeDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
