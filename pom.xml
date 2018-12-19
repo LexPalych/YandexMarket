@@ -12,6 +12,17 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.0</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <configuration>
+                    <properties>
+                        <configurationParameters>
+                            junit.jupiter.execution.parallel.enabled = true
+                        </configurationParameters>
+                    </properties>
+                    <parallel>methods</parallel>
+                    <perCoreThreadCount>true</perCoreThreadCount>
+                    <threadCount>2</threadCount>
+                </configuration>
             </plugin>
         </plugins>
     </build>
@@ -19,7 +30,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
-
         <junit.jupiter.version>5.3.2</junit.jupiter.version>
     </properties>
     <dependencies>
@@ -58,6 +68,7 @@
             <version>5.0.0</version>
             <scope>test</scope>
         </dependency>
+
     </dependencies>
 
 </project>
