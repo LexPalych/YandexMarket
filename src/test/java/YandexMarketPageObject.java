@@ -1,15 +1,16 @@
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class YandexMarketTest {
-    private ChromeDriver driver;
+public class YandexMarketPageObject {
+    private WebDriver driver;
 
     @FindBy(xpath = "//*[@id=\"header-search\"]")
     private WebElement search;
@@ -41,57 +42,57 @@ public class YandexMarketTest {
     @FindBy(xpath = "//strong[contains(.,'Толстовка')]")
     private WebElement sweatshirt;
 
-    public YandexMarketTest(ChromeDriver driver) {
+    public YandexMarketPageObject(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
 
-    public YandexMarketTest openSite(String url, ChromeDriver chromeDriver) {
-        chromeDriver.get(url);
+    public YandexMarketPageObject openSite(String url, WebDriver WebDriver) {
+        WebDriver.get(url);
         return this;
     }
 
-    public YandexMarketTest tabClick(String s) {
+    public YandexMarketPageObject tabClick(String s) {
         driver.findElement(By.xpath("//*[.='" + s + "']")).click();
         return this;
     }
 
-    public YandexMarketTest fillField(String s) {
+    public YandexMarketPageObject fillField(String s) {
         search.sendKeys(s);
         return this;
     }
 
-    public YandexMarketTest checkFieldLaptop() {
+    public YandexMarketPageObject checkFieldLaptop() {
         assertEquals(search.getAttribute("value"), "Ноутбуки");
         return this;
     }
 
-    public YandexMarketTest fillPrice(String where, String value) {
+    public YandexMarketPageObject fillPrice(String where, String value) {
         driver.findElement(By.xpath("//*[@name='"+ where +"']")).sendKeys(value);
         return this;
     }
 
-    public YandexMarketTest checkPrice (String where, String value) {
+    public YandexMarketPageObject checkPrice (String where, String value) {
         assertEquals(driver.findElement(By.xpath("//*[@name='"+ where +"']")).getAttribute("value"), value);
         return this;
     }
 
-    public YandexMarketTest clickButton(String s) {
+    public YandexMarketPageObject clickButton(String s) {
         driver.findElement(By.xpath("//span[.=\""+ s +"\"]")).click();
         return this;
     }
 
-    public YandexMarketTest checkTick(String s) {
+    public YandexMarketPageObject checkTick(String s) {
         assertTrue(driver.findElement(By.xpath("//*[@name=\"Производитель " + s + "\"]")).isSelected());
         return this;
     }
 
-    public YandexMarketTest claerSearch() {
+    public YandexMarketPageObject claerSearch() {
         search.clear();
         return this;
     }
 
-    public YandexMarketTest tabSweatshirt() {
+    public YandexMarketPageObject tabSweatshirt() {
         try {
             sweatshirt.click();
         }catch (NoSuchElementException thrown){
