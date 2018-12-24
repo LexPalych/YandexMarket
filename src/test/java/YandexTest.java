@@ -52,7 +52,7 @@ public class YandexTest {
 //        .openSite(url, driver);
     }
 
-    static Stream<Arguments> stringIntAndListProvider() {
+    private static Stream<Arguments> stringIntAndListProvider() {
         return Stream.of(
                 Arguments.of("100000", "150000"),
                 Arguments.of("150000", "200000"),
