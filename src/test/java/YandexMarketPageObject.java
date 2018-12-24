@@ -5,11 +5,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class YandexMarketPageObject extends GetXpath {
+public class YandexMarketPageObject {
     private WebDriver driver;
+    private String search = "//*[@id=\"header-search\"]";
 
 //    @FindBy(xpath = "//*[@id=\"header-search\"]")
 //    private WebElement search;
@@ -37,9 +40,9 @@ public class YandexMarketPageObject extends GetXpath {
 //
 //    @FindBy(xpath = "//span[.=\"Core i7\"]")
 //    private WebElement intelCore;
-
-    @FindBy(xpath = "//strong[contains(.,'Толстовка')]")
-    private WebElement sweatshirt;
+//
+//    @FindBy(xpath = "//strong[contains(.,'Толстовка')]")
+//    private WebElement sweatshirt;
 
     public YandexMarketPageObject(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -57,12 +60,12 @@ public class YandexMarketPageObject extends GetXpath {
     }
 
     public YandexMarketPageObject fillField(String s) {
-        get("//*[@id=\"header-search\"]", driver).sendKeys(s);
+        get(search).sendKeys(s);
         return this;
     }
 
     public YandexMarketPageObject checkFieldLaptop() {
-        assertEquals(get("//*[@id=\"header-search\"]", driver).getAttribute("value"), "Ноутбуки");
+        assertEquals(get(search).getAttribute("value"), "Ноутбуки");
         return this;
     }
 
@@ -87,7 +90,7 @@ public class YandexMarketPageObject extends GetXpath {
     }
 
     public YandexMarketPageObject claerSearch() {
-        get("//*[@id=\"header-search\"]", driver).clear();
+        get(search).clear();
         return this;
     }
 
@@ -98,10 +101,19 @@ public class YandexMarketPageObject extends GetXpath {
 
     public YandexMarketPageObject tabSweatshirt() {
         try {
-            sweatshirt.click();
+            get("//strong[contains(.,'Толстовка')]").click();
+//            sweatshirt.click();
         }catch (NoSuchElementException thrown){
             System.out.println("Упс, что-то пошло не так. 'Толстовка' не найдена");
         }
         return this;
+    }
+
+    public WebElement get(String string) {
+        return driver.findElement(By.xpath(string));
+    }
+
+    public List<WebElement> gets(String string) {
+        return driver.findElements(By.xpath(string));
     }
 }
