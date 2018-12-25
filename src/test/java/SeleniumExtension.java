@@ -5,8 +5,11 @@ import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.PageFactory;
 
-public class SelentiumExtension implements BeforeTestExecutionCallback, AfterTestExecutionCallback {
+import java.util.concurrent.TimeUnit;
+
+public class SeleniumExtension implements BeforeTestExecutionCallback, AfterTestExecutionCallback {
     private WebDriver driver;
 
     @BeforeEach
@@ -16,16 +19,46 @@ public class SelentiumExtension implements BeforeTestExecutionCallback, AfterTes
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Alexandr\\IdeaProjects\\chromedriver.exe");
         driver = new ChromeDriver();
 
-        //Чтобы окошко развернулось на весь экран
-        driver.manage().window().maximize();
-        var homePageObject = new YandexHomePageObject(driver);
-        homePageObject.openSite(url, driver);
+        /**
+         * Установка неявного ожидания
+         */
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 
+        /**
+         * Чтобы окошко развернулось на весь экран
+         */
+        driver.manage().window().maximize();
+
+        /**
+         * Инициализация фабрики
+         */
+        PageObjectFactory.setWebDriver(driver);
+
+        /**
+         * Создание начальной страницы
+         */
+        var homePageObject = PageObjectFactory.createPage(YandexHomePageObject.class);
+
+        /**
+         * Заход на главную страницу
+         */
+        homePageObject.openSite(url, YandexHomePageObject.class);
+
+        /**
+         * Получение объекта теста
+         */
         var testInstance = context.getRequiredTestInstance();
         var testInstanceClass = testInstance.getClass();
 
+        /**
+         * Поиск поля
+         */
         var testField = testInstanceClass.getDeclaredField("yandexHomePageObject");
         testField.setAccessible(true);
+
+        /**
+         * Инициализация поля
+         */
         testField.set(testInstance, homePageObject);
     }
 

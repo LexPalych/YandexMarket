@@ -9,53 +9,62 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT;
 
-@ExtendWith(SelentiumExtension.class)
+/**
+ * Подключение расширения
+ */
+@ExtendWith(SeleniumExtension.class)
+/**
+ * Разрешение параллельного выполнения тестов
+ */
 @Execution(CONCURRENT)
 public class YandexTest {
+    /**
+     * Инициализация происходит в SeleniumExtension
+     */
     private YandexHomePageObject yandexHomePageObject;
 
     @DisplayName("Сейчас как прогоним разок-другой этот тестик")
     @ParameterizedTest(name = "{index} => Цена от {0} до {1}")
     @MethodSource("stringIntAndListProvider")
     public void yandexTest(String priceMin, String priseMax) {
-    // Заходим на Яндекс => Яндекс.Маркет => Вводим "Ноутбуки" => Проверяем => Нажимаем "Найти"
-    yandexHomePageObject
-        .tabClick("Маркет")
-        .fillField("Ноутбуки")
-        .checkFieldLaptop()
-        .tabClick("Найти")
 
-        // Вводим минимум и максимум цены и проверяем их
-        .fillPrice("Цена от", priceMin)
-        .fillPrice("Цена до", priseMax)
-        .checkPrice("Цена от", priceMin)
-        .checkPrice("Цена до", priseMax)
+        // Заходим на Яндекс => Яндекс.Маркет => Вводим "Ноутбуки" => Проверяем => Нажимаем "Найти"
+        yandexHomePageObject
+            .tabClick("Маркет", YandexMarketPageObject.class)
+            .fillField("Ноутбуки")
+            .checkFieldLaptop()
+            .tabClick("Найти", YandexMarketPageObject.class)
 
-        //Ставим галочки напротив нужных фирм
-        .clickButton("Core i7")
-        .clickButton("Apple")
-        .clickButton("ASUS")
-        .clickButton("HP")
-        .clickButton("Xiaomi")
+            // Вводим минимум и максимум цены и проверяем их
+            .fillPrice("Цена от", priceMin)
+            .fillPrice("Цена до", priseMax)
+            .checkPrice("Цена от", priceMin)
+            .checkPrice("Цена до", priseMax)
 
-        // Проверяем, что нужные фирмы отмечены
-        .checkTick("Apple")
-        .checkTick("ASUS")
-        .checkTick("HP")
-        .checkTick("Xiaomi")
+            //Ставим галочки напротив нужных фирм
+            .clickButton("Core i7")
+            .clickButton("Apple")
+            .clickButton("ASUS")
+            .clickButton("HP")
+            .clickButton("Xiaomi")
 
-        // Очищаем поле поиска => Вводим "Зелёный слоник" => Нажимаем "Найти" => Ищем "Толстовка"
-        .claerSearch()
-        .fillField("Зеленый слоник")
-        .tabClick("Найти")
-        .tabSweatshirt();
-//        .openSite(url, driver);
+            // Проверяем, что нужные фирмы отмечены
+            .checkTick("Apple")
+            .checkTick("ASUS")
+            .checkTick("HP")
+            .checkTick("Xiaomi")
+
+            // Очищаем поле поиска => Вводим "Зелёный слоник" => Нажимаем "Найти" => Ищем "Толстовка"
+            .clearSearch()
+            .fillField("Зеленый слоник")
+            .tabClick("Найти", YandexMarketPageObject.class)
+            .tabSweatshirt();
     }
 
     private static Stream<Arguments> stringIntAndListProvider() {
         return Stream.of(
-                Arguments.of("100000", "150000"),
-                Arguments.of("150000", "200000"),
+//                Arguments.of("100000", "150000"),
+//                Arguments.of("150000", "200000"),
                 Arguments.of("200000", "250000"));
     }
 }

@@ -49,7 +49,7 @@
 //    }
 //
 //    public YandexPageObjectTest openSite(String url, ChromeDriver chromeDriver) {
-//        chromeDriver.get(url);
+//        chromeDriver.getWebElement(url);
 //        return this;
 //    }
 //
@@ -88,7 +88,7 @@
 //        return this;
 //    }
 //
-//    public YandexPageObjectTest claerSearch() {
+//    public YandexPageObjectTest clearSearch() {
 //        search.clear();
 //        return this;
 //    }

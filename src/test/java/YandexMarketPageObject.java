@@ -1,82 +1,31 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class YandexMarketPageObject {
-    private WebDriver driver;
+public class YandexMarketPageObject extends Page<YandexMarketPageObject> {
     private String search = "//*[@id=\"header-search\"]";
-
-//    @FindBy(xpath = "//*[@id=\"header-search\"]")
-//    private WebElement search;
-//
-//    @FindBy(xpath = "//*[@class=\"search2__button\"]")
-//    private WebElement searchButton;
-//
-//    @FindBy(xpath = "//*[@name='Цена от']")
-//    private WebElement minPrice;
-//
-//    @FindBy(xpath = "//*[@name='Цена до']")
-//    private WebElement maxPrice;
-//
-//    @FindBy(xpath = "//span[.=\"Apple\"]")
-//    private WebElement companyApple;
-//
-//    @FindBy(xpath = "//span[.=\"ASUS\"]")
-//    private WebElement companyASUS;
-//
-//    @FindBy(xpath = "//span[.=\"HP\"]")
-//    private WebElement companyHP;
-//
-//    @FindBy(xpath = "//span[.=\"Xiaomi\"]")
-//    private WebElement companyXiaomi;
-//
-//    @FindBy(xpath = "//span[.=\"Core i7\"]")
-//    private WebElement intelCore;
-//
-//    @FindBy(xpath = "//strong[contains(.,'Толстовка')]")
-//    private WebElement sweatshirt;
-
-    public YandexMarketPageObject(WebDriver driver) {
-        PageFactory.initElements(driver, this);
-        this.driver = driver;
-    }
-
-    public YandexHomePageObject openSite(String url, WebDriver WebDriver) {
-        WebDriver.get(url);
-        return new YandexHomePageObject(driver);
-    }
 
     public YandexMarketPageObject tabClick(String s) {
         driver.findElement(By.xpath("//*[.='" + s + "']")).click();
         return this;
     }
 
-    public YandexMarketPageObject fillField(String s) {
-        get(search).sendKeys(s);
-        return this;
-    }
-
     public YandexMarketPageObject checkFieldLaptop() {
-        assertEquals(get(search).getAttribute("value"), "Ноутбуки");
-        return this;
+        assertEquals(getWebElement(search).getAttribute("value"), "Ноутбуки");
+        return createPage(YandexMarketPageObject.class);
     }
 
     public YandexMarketPageObject fillPrice(String where, String value) {
         driver.findElement(By.xpath("//*[@name='"+ where +"']")).sendKeys(value);
-        return this;
+        return createPage(YandexMarketPageObject.class);
     }
 
     public YandexMarketPageObject checkPrice (String where, String value) {
         assertEquals(driver.findElement(By.xpath("//*[@name='"+ where +"']")).getAttribute("value"), value);
-        return this;
+        return createPage(YandexMarketPageObject.class);
     }
 
     public YandexMarketPageObject clickButton(String s) {
@@ -89,31 +38,18 @@ public class YandexMarketPageObject {
         return this;
     }
 
-    public YandexMarketPageObject claerSearch() {
-        get(search).clear();
+    public YandexMarketPageObject clearSearch() {
+        getWebElement(search).clear();
         return this;
     }
 
-//    public YandexMarketPageObject claerSearch() {
-//        search.clear();
-//        return this;
-//    }
-
     public YandexMarketPageObject tabSweatshirt() {
         try {
-            get("//strong[contains(.,'Толстовка')]").click();
+            getWebElement("//strong[contains(.,'Толстовка')]").click();
 //            sweatshirt.click();
         }catch (NoSuchElementException thrown){
             System.out.println("Упс, что-то пошло не так. 'Толстовка' не найдена");
         }
         return this;
-    }
-
-    public WebElement get(String string) {
-        return driver.findElement(By.xpath(string));
-    }
-
-    public List<WebElement> gets(String string) {
-        return driver.findElements(By.xpath(string));
     }
 }
