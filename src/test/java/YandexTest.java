@@ -31,7 +31,7 @@ public class YandexTest {
         // Заходим на Яндекс => Яндекс.Маркет => Вводим "Ноутбуки" => Проверяем => Нажимаем "Найти"
         yandexHomePageObject
             .tabClick("Маркет", YandexMarketPageObject.class)
-            .fillField("Ноутбуки")
+            .fillSearch("Ноутбуки")
             .checkFieldLaptop()
             .tabClick("Найти", YandexMarketPageObject.class)
 
@@ -56,7 +56,7 @@ public class YandexTest {
 
             // Очищаем поле поиска => Вводим "Зелёный слоник" => Нажимаем "Найти" => Ищем "Толстовка"
             .clearSearch()
-            .fillField("Зеленый слоник")
+            .fillSearch("Зеленый слоник")
             .tabClick("Найти", YandexMarketPageObject.class)
             .tabSweatshirt();
     }

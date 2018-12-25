@@ -8,17 +8,12 @@ public class Page<T extends Page> {
     protected WebDriver driver;
 
     public <D> D tabClick(String name, Class<D> expectedPage) {
-        getWebElement(name).click();
+        getWebElement(getString(name)).click();
         return createPage(expectedPage);
     }
 
-    public T fillField(String value) {
-        getWebElement(value).sendKeys(value);
-        return (T) this;
-    }
-
     public WebElement getWebElement(String xpath) {
-        return driver.findElement(By.xpath(getString(xpath)));
+        return driver.findElement(By.xpath(xpath));
     }
 
     public String getString(String xpath) {
@@ -26,7 +21,7 @@ public class Page<T extends Page> {
     }
 
     public List<WebElement> getWebElements(String xpath) {
-        return driver.findElements(By.xpath(getString(xpath)));
+        return driver.findElements(By.xpath(xpath));
     }
 
     public <D> D createPage(Class<D> expectedPage) {

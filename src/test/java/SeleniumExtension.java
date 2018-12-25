@@ -5,7 +5,6 @@ import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
 
@@ -64,7 +63,7 @@ public class SeleniumExtension implements BeforeTestExecutionCallback, AfterTest
 
     @AfterEach
     public void afterTestExecution(ExtensionContext context) throws Exception {
-            System.out.println("Тест окончен");
-            driver.quit();
+        System.out.println("Тест окончен");
+        driver.quit();
     }
 }
