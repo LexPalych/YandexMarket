@@ -1,9 +1,12 @@
+import extensions.SeleniumExtension;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
+import pageObject.YandexHomePageObject;
+import pageObject.YandexMarketPageObject;
 
 import java.util.stream.Stream;
 
@@ -19,7 +22,7 @@ import static org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT;
 @Execution(CONCURRENT)
 public class YandexTest {
     /**
-     * Инициализация происходит в SeleniumExtension
+     * Инициализация происходит в extensions.SeleniumExtension
      */
     private YandexHomePageObject yandexHomePageObject;
 
@@ -27,9 +30,11 @@ public class YandexTest {
     @ParameterizedTest(name = "{index} => Цена от {0} до {1}")
     @MethodSource("stringIntAndListProvider")
     public void yandexTest(String priceMin, String priseMax) {
+        var url = "https://yandex.ru/";
 
         // Заходим на Яндекс => Яндекс.Маркет => Вводим "Ноутбуки" => Проверяем => Нажимаем "Найти"
         yandexHomePageObject
+            .openSite(url, YandexHomePageObject.class)
             .tabClick("Маркет", YandexMarketPageObject.class)
             .fillSearch("Ноутбуки")
             .checkFieldLaptop()
@@ -58,7 +63,8 @@ public class YandexTest {
             .clearSearch()
             .fillSearch("Зеленый слоник")
             .tabClick("Найти", YandexMarketPageObject.class)
-            .tabSweatshirt();
+            .tabSweatshirt()
+            .openSite(url, YandexHomePageObject.class);
     }
 
     private static Stream<Arguments> stringIntAndListProvider() {

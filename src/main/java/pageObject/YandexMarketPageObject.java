@@ -1,3 +1,5 @@
+package pageObject;
+
 import org.openqa.selenium.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -1,11 +1,18 @@
+package pageObject;
+
 import org.openqa.selenium.WebDriver;
+
 import java.lang.reflect.InvocationTargetException;
 
 public class PageObjectFactory {
-    private static ThreadLocal<WebDriver> webDriverThreadLocal = new ThreadLocal<>();
+    private static final ThreadLocal<WebDriver> webDriverThreadLocal = new ThreadLocal<>();
 
-    public static void setWebDriver(WebDriver driver) {
+    public static void setWebDriver(final WebDriver driver) {
         PageObjectFactory.webDriverThreadLocal.set(driver);
+    }
+
+    public static WebDriver getWebDriver() {
+        return webDriverThreadLocal.get();
     }
 
     public static <T> T createPage(Class<T> pageClass) {

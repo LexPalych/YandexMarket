@@ -1,22 +1,22 @@
+package extensions;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.AfterTestExecutionCallback;
 import org.junit.jupiter.api.extension.BeforeTestExecutionCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import pageObject.PageObjectFactory;
+import pageObject.YandexHomePageObject;
 
 import java.util.concurrent.TimeUnit;
 
 public class SeleniumExtension implements BeforeTestExecutionCallback, AfterTestExecutionCallback {
-    private WebDriver driver;
-
     @BeforeEach
     public void beforeTestExecution(ExtensionContext context) throws Exception {
-        var url = "https://yandex.ru/";
         System.out.println("Запуск теста");
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Alexandr\\IdeaProjects\\chromedriver.exe");
-        driver = new ChromeDriver();
+        var driver = new ChromeDriver();
 
         /**
          * Установка неявного ожидания
@@ -41,7 +41,6 @@ public class SeleniumExtension implements BeforeTestExecutionCallback, AfterTest
         /**
          * Заход на главную страницу
          */
-        homePageObject.openSite(url, YandexHomePageObject.class);
 
         /**
          * Получение объекта теста
@@ -64,6 +63,6 @@ public class SeleniumExtension implements BeforeTestExecutionCallback, AfterTest
     @AfterEach
     public void afterTestExecution(ExtensionContext context) throws Exception {
         System.out.println("Тест окончен");
-        driver.quit();
+        PageObjectFactory.getWebDriver().quit();
     }
 }
