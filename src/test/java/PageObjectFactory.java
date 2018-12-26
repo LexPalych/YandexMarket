@@ -2,10 +2,10 @@ import org.openqa.selenium.WebDriver;
 import java.lang.reflect.InvocationTargetException;
 
 public class PageObjectFactory {
-    private static WebDriver driver;
+    private static ThreadLocal<WebDriver> webDriverThreadLocal = new ThreadLocal<>();
 
     public static void setWebDriver(WebDriver driver) {
-        PageObjectFactory.driver = driver;
+        PageObjectFactory.webDriverThreadLocal.set(driver);
     }
 
     public static <T> T createPage(Class<T> pageClass) {
@@ -24,6 +24,7 @@ public class PageObjectFactory {
             /**
              * Инициализация поля driver
              */
+            var driver = webDriverThreadLocal.get();
             field.set(pageObjectInstance, driver);
 
             return pageObjectInstance;

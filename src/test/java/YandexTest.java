@@ -63,8 +63,8 @@ public class YandexTest {
 
     private static Stream<Arguments> stringIntAndListProvider() {
         return Stream.of(
-//                Arguments.of("100000", "150000"),
-//                Arguments.of("150000", "200000"),
+                Arguments.of("100000", "150000"),
+                Arguments.of("150000", "200000"),
                 Arguments.of("200000", "250000"));
     }
 }
