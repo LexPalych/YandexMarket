@@ -29,7 +29,7 @@ public class YandexMarketPageObject extends Page<YandexMarketPageObject> {
     }
 
     public YandexMarketPageObject clickButton(String s) {
-        getWebElement("//span[.=\""+ s +"\"]").click();
+        getWebElement("//span[.='"+ s +"']").click();
         return this;
     }
 
